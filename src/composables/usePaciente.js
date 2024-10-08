@@ -28,10 +28,7 @@ export const usePaciente = () => {
       resetForm({ values: pacienteStore.paciente.value }, { force: true })
     }
   })
-
-//   watch(pacienteStore.hasActiveId,()=>{
-//     console.log(pacienteStore.activeId)
-//   })
+ 
 
   const onSubmit = handleSubmit((value) => {
     pacienteStore.handleSubmit(value)
@@ -44,6 +41,12 @@ export const usePaciente = () => {
   const bgButtonForm = computed(()=>pacienteStore.activeId
   ? 'bg-green-600 hover:bg-green-700'
   : 'bg-indigo-600 hover:bg-indigo-700')
+
+  const hasActiveId = computed(()=>pacienteStore.activeId)
+
+  const handleCancel = () => {
+    pacienteStore.reset()
+  }
 
   return {
     nombreMascota,
@@ -59,6 +62,8 @@ export const usePaciente = () => {
     errors,
     onSubmit,
     labelButtonForm,
-    bgButtonForm
+    bgButtonForm,
+    hasActiveId,
+    handleCancel
   }
 }

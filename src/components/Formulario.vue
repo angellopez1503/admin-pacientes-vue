@@ -15,7 +15,9 @@ const {
   errors,
   onSubmit,
   labelButtonForm,
-  bgButtonForm
+  bgButtonForm,
+  hasActiveId,
+  handleCancel
 } = usePaciente()
 </script>
 
@@ -111,12 +113,16 @@ const {
       />
       <span class="text-red-500" v-if="errors.sintomas">{{ errors.sintomas }}</span>
     </div>
-    <input
-      type="submit"
-      class="w-full p-3 text-white uppercase font-black cursor-pointer transition-colors"
-      :class="bgButtonForm"
-      :value="labelButtonForm"
-    />
+    <div class="flex flex-col gap-2">
+      <input
+        type="submit"
+        class="w-full p-3 text-white uppercase font-black cursor-pointer transition-colors"
+        :class="bgButtonForm"
+        :value="labelButtonForm"
+      />
+      <input v-if="hasActiveId" type="button" class="w-full p-3 bg-yellow-500 hover:bg-yellow-600 text-white uppercase font-black cursor-pointer transition-colors" value="Cancelar" @click="handleCancel">
+    </div>
+
   </form>
   <!-- <div class="grid grid-cols-2 mt-2">
     <div class="bg-blue-400 p-2">

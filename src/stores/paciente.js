@@ -4,7 +4,6 @@ import { computed, onMounted, reactive, ref, watch } from 'vue'
 import { v4 as uuidv4 } from 'uuid'
 
 export const usePacienteStore = defineStore('paciente', () => {
- 
   const paciente = reactive({})
   const pacientes = ref([])
   const activeId = ref('')
@@ -23,7 +22,7 @@ export const usePacienteStore = defineStore('paciente', () => {
     }
   )
   watch(activeId, () => {
-    console.log("first")
+    console.log('first')
     if (activeId.value) {
       const row = pacientes.value.find((item) => item.id === activeId.value)
       paciente.value = row
@@ -33,30 +32,30 @@ export const usePacienteStore = defineStore('paciente', () => {
   const handleSubmit = (data) => {
     let message = ''
     if (data.id) {
-      pacientes.value = pacientes.value.map((item) =>
-        item.id === data.id ? { ...data } : item
-      )
+      pacientes.value = pacientes.value.map((item) => (item.id === data.id ? { ...data } : item))
       message = 'Los datos se actualizaron con exito'
     } else {
       pacientes.value.push({ ...data, id: uuidv4() })
       message = 'Los datos se registraron con exito'
     }
+    reset()
+    alertToastify(message, 'success')
+  }
+
+  const reset = () => {
     activeId.value = ''
     paciente.value = {}
-    alertToastify(message, 'success')
   }
 
   const emptyPacientes = computed(() => pacientes.value.length === 0)
 
   const hasPacientes = computed(() => pacientes.value.length > 0)
 
-  
-
   const deletePaciente = (id) => {
-    pacientes.value = pacientes.value.filter(item=>item.id !== id)
+    pacientes.value = pacientes.value.filter((item) => item.id !== id)
     alertToastify('El Paciente se elimino con exito', 'success')
-    if(activeId.value === id){
-      activeId.value=''
+    if (activeId.value === id) {
+      activeId.value = ''
       paciente.value = {}
     }
   }
@@ -68,7 +67,7 @@ export const usePacienteStore = defineStore('paciente', () => {
     emptyPacientes,
     hasPacientes,
     activeId,
-    deletePaciente
-  
+    deletePaciente,
+    reset
   }
 })
