@@ -13,10 +13,15 @@
   "dependencies": {
     "admin-pacientes": "file:",
     "pinia": "^2.1.7",
-    "vue": "^3.4.29"
+    "uuid": "^10.0.0",
+    "vee-validate": "^4.13.2",
+    "vue": "^3.4.29",
+    "vue3-toastify": "^0.2.3",
+    "yup": "^1.4.0"
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.8.0",
+    "@types/uuid": "^10.0.0",
     "@vitejs/plugin-vue": "^5.0.5",
     "@vue/eslint-config-prettier": "^9.0.0",
     "autoprefixer": "^10.4.20",
